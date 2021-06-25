@@ -20,7 +20,9 @@ module.exports = {
           ['/depedency/scanImportEntry', "确定扫描入口文件"],
           ['/depedency/scanImportStart', "如何执行扫描"],
           ['/depedency/esbuildPluginIntroduce', "esbuild插件基础介绍"],
-          ['/depedency/esbuildScanPlugin', "收集依赖插件esbuildScanPlugin"]
+          ['/depedency/esbuildScanPlugin', "收集依赖插件esbuildScanPlugin"],
+          ['/depedency/htmlScan', "HTML入口扫描"],
+          ['/depedency/pathResolve', "导入路径扫描"]
         ]
       }
     ]
