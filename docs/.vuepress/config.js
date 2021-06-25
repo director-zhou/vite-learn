@@ -18,7 +18,9 @@ module.exports = {
           ['/depedency/setup', "构建准备"],
           ['/depedency/autoSearch', "自动依赖搜寻"],
           ['/depedency/scanImportEntry', "确定扫描入口文件"],
-          ['/depedency/scanImportStart', "开始扫描入口"]
+          ['/depedency/scanImportStart', "如何执行扫描"],
+          ['/depedency/esbuildPluginIntroduce', "esbuild插件基础介绍"],
+          ['/depedency/esbuildScanPlugin', "收集依赖插件esbuildScanPlugin"]
         ]
       }
     ]
