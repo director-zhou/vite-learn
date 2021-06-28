@@ -22,7 +22,8 @@ module.exports = {
           ['/depedency/esbuildPluginIntroduce', "esbuild插件基础介绍"],
           ['/depedency/esbuildScanPlugin', "收集依赖插件esbuildScanPlugin"],
           ['/depedency/htmlScan', "HTML入口扫描"],
-          ['/depedency/pathResolve', "导入路径扫描"]
+          ['/depedency/pathResolve', "导入路径扫描"],
+          ['/depedency/collectionDependency', "收集依赖"]
         ]
       }
     ]
