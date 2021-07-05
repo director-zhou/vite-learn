@@ -1,13 +1,10 @@
-# 1112323232
 
-## vite在什么时机触发预构建。
-## vite是通过什么方式寻到需要预构建目标的。
-## 那些Api和预构建有着关联性。
+这个需要理解一下
+absWorkingDir: process.cwd(),  https://github.com/vitejs/vite/pull/4001
 
+这个需要讲解一下，
+main.js 通地 /user/ 绝对路径引入预构建不了,只能pre-bundle
 
+再次预构建 的内容可能是写代码的时候手动加入的
 
-import 'ant-design-vue/a' 这样里面的内容会加载时预构建
-import 'ant-design-vue/a.vue' 这样就不会就会先前被抓到
-
-
-可以通地@别名进行优化
+加一个Missing的格式

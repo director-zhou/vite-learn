@@ -23,7 +23,11 @@ module.exports = {
           ['/depedency/esbuildScanPlugin', "收集依赖插件esbuildScanPlugin"],
           ['/depedency/htmlScan', "HTML入口扫描"],
           ['/depedency/pathResolve', "导入路径扫描"],
-          ['/depedency/collectionDependency', "收集依赖"]
+          ['/depedency/collectionDependency', "收集依赖"],
+          ['/depedency/useAndperfectDeps', "利用并完善依赖"],
+          ['/depedency/构建前准备工作', "构建前准备工作"],
+          ['/depedency/构建文件处理esbuildDepPluginOne', "构建文件处理esbuildDepPlugin(一)"],
+          ['/depedency/构建文件处理esbuildDepPluginTwo', "构建文件处理esbuildDepPlugin(二)"]
         ]
       }
     ]
