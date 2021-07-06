@@ -27,7 +27,8 @@ module.exports = {
           ['/depedency/useAndperfectDeps', "利用并完善依赖"],
           ['/depedency/构建前准备工作', "构建前准备工作"],
           ['/depedency/构建文件处理esbuildDepPluginOne', "构建文件处理esbuildDepPlugin(一)"],
-          ['/depedency/构建文件处理esbuildDepPluginTwo', "构建文件处理esbuildDepPlugin(二)"]
+          ['/depedency/构建文件处理esbuildDepPluginTwo', "构建文件处理esbuildDepPlugin(二)"],
+          ['/depedency/生成依赖元信息完成构建', "生成依赖元信息完成构建"]
         ]
       }
     ]
