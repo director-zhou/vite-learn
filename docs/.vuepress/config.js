@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Vite 源码学习',
   description: '',
+  base: "/vite-learn/",
   themeConfig: {
     // nav:[ // 导航栏配置
     //   {text: '前端基础', link: '/dependency/' }      
