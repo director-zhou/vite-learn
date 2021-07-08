@@ -3,7 +3,7 @@ home: true
 heroText: Vite学习文档
 tagline: 引领vite学习
 actionText: 快速上手 →
-actionLink: /depedency/why1
+actionLink: /depedency/为什么需要预构建一
 features:
 - title: 预构建
   details: 预构建。
