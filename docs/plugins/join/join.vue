@@ -20,8 +20,8 @@ export default {
 <style lang="stylus" scoped>
 .mm {
   position: fixed;
-  top: 100px;
-  right: 10px;
+  top: 80px;
+  right: -10px;
   >img {
     width: 200px;
   }
