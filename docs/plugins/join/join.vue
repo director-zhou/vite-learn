@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  created() {
-     this.clientWidth = document.documentElement.clientWidth
+  mounted() {
+    this.clientWidth = document.documentElement.clientWidth
   },
   data() {
     return {
