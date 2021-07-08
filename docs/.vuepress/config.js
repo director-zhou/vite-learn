@@ -2,10 +2,13 @@ module.exports = {
   title: 'Vite 源码学习',
   description: '',
   base: "/vite-learn/",
+  plugins: [
+    require('../plugins/join/index.js')
+  ],
   themeConfig: {
-    // nav:[ // 导航栏配置
-    //   {text: '前端基础', link: '/dependency/' }      
-    // ],
+    nav:[ // 导航栏配置
+      {text: 'GitHub', link: '/https://github.com/director-zhou/vite-learn/', target:'_blank' }      
+    ],
     sidebar: [
       {
         title: '依赖预构建',

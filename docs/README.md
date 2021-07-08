@@ -7,5 +7,10 @@ actionLink: /depedency/why1
 features:
 - title: 预构建
   details: 预构建。
-footer: MIT Licensed | Copyright © 2018-present Zhou
+- title: vite配置
+  details: vite配置。
+- title: 插件
+  details: 插件。
+- title: 等等
+  details: 等等。
 ---
