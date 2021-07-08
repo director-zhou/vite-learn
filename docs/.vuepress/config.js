@@ -7,7 +7,7 @@ module.exports = {
   ],
   themeConfig: {
     nav:[ // 导航栏配置
-      {text: 'GitHub', link: '/https://github.com/director-zhou/vite-learn/', target:'_blank' }      
+      {text: 'GitHub', link: '//github.com/director-zhou/vite-learn/', target:'_blank' }      
     ],
     sidebar: [
       {
