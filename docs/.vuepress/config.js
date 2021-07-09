@@ -17,7 +17,7 @@ module.exports = {
           ['/depedency/为什么需要预构建一', "为什么需要预构建(一)"],
           ['/depedency/为什么需要预构建二', "为什么需要预构建(二)"],
           ['/depedency/预构建触发时机', "预构建触发时机"],
-          ['/depedency/预构建执行机制', "预构建执行机制"],
+          ['/depedency/预构建执行逻辑', "预构建执行逻辑"],
           ['/depedency/预构建核心方法optimizeDeps', "预构建核心方法optimizeDeps"],
           ['/depedency/构建准备', "构建准备"],
           ['/depedency/自动依赖搜寻', "自动依赖搜寻"],
