@@ -23,17 +23,17 @@
 </html>
 ```
 
-在工程启动的时候, 通过默认扫描入口 `entries` 是定义的 `index.html` 文件, 对于`html`文件通常我们会有以下几种写法:
+在工程启动的时候, [确定了扫描入口文件](/depedency/确定扫描入口文件.html#scanimports-函数), 默认扫描入口 `entries` 则为根目录下的 `index.html` 文件, 对于`html`文件通常我们会有以下几引入脚本的写法:
 
 1. `script` 元素既可以包含脚本语言，
 2. 也可以通过 `src` 属性指向外部脚本文件。
 3. 通过 `type` 属性规定脚本的 `MIME` 类型。
 
-## `.html`结尾文件构建问题
+## `.html`后缀文件的构建问题
 
-在`esbuild`中`enteryPoint`入口的路径是一个绝对路径的`html`, 在构建中，将会遇到对 `.html` 路径解析
-但是对于构建工具`esbuild`来说，不会识别 `.html` 路径的文件,并不会对此进行构建, 如果不进行解析转换将会遇到以下的错误信息
+在 **esbuild** 中 `enteryPoint` 入口的路径是一个绝对路径的 `.html` 后缀文件。但是对于构建工具 **esbuild** 来说，不会识别 `.html` 路径的文件, 不支持此类型文件的构建, 如果不进行解析转换将会遇到以下的错误信息。
 
+::: danger 错误提示
 ```js
 
  > error: No loader is configured for ".html" files: index.html
@@ -42,13 +42,15 @@ error when starting dev server:
 Error: Build failed with 1 error:
 error: No loader is configured for ".html" files: index.html
 ```
+:::
 
 
-之所以使用插件, 在整个构建扫描期间，只需要知道整个构建的关系链，而不是真正的构建, 所以只要提需取到`.html`中的解本内容和引入的脚本路径，就可以顺藤摸瓜继续向下解析
+之所以使用插件, 在整个构建扫描期间，只需要知道整个构建导入的关系链，而不是真正的构建, 所以只要提需取到 `.html` 中脚本内容和引入的脚本路径，就可以顺藤摸瓜继续向下寻找导入折关系链。
 
-## onResolve 解析路径
+## `onResolve` 确定路径
 
-```
+```js
+const htmlTypesRE = /\.(html|vue|svelte)$/
 build.onResolve({ filter: htmlTypesRE }, async ({ path, importer }) => {
   return {
     path: await resolve(path, importer),
