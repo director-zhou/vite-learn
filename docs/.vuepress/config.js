@@ -26,7 +26,7 @@ module.exports = {
           ['/depedency/esbuild插件基础介绍', "esbuild插件基础介绍"],
           ['/depedency/收集依赖插件esbuildScanPlugin', "收集依赖插件esbuildScanPlugin"],
           ['/depedency/HTML入口扫描', "HTML入口扫描"],
-          ['/depedency/导入路径扫描', "导入路径扫描"],
+          ['/depedency/扫描导入链路', "扫描导入链路"],
           ['/depedency/收集依赖', "收集依赖"],
           ['/depedency/利用并完善依赖', "利用并完善依赖"],
           ['/depedency/构建前准备工作', "构建前准备工作"],

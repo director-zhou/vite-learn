@@ -59,32 +59,39 @@ build.onResolve({ filter: htmlTypesRE }, async ({ path, importer }) => {
 })
 ```
 
-当遇到`.html`文件时，将会被以上代码进行`filter`拦截, 通过调用`resolve`方法返回 `html` 的绝对路径，同时返回给`esbuild`进行路径解析
-同时还需要返回对象中设置`namespace: 'html'`, 在`esbuild`插件中介绍过, 如果不是`esbuild`能够识别的文件, 但是想继续进行`onload`进行转换的同时, 需要打上`namespace`的标签，进行暂存, 这样`esbuild`暂时还是会认为它是一个有效的构建文件。
+遇到 `.html` 后缀文件时，将会被以上代码进行 `filter` 拦截, 通过调用 `resolve` 方法返回 `html` 的绝对路径，同时返回值对象中还需要设置`namespace: 'html'`, 在 [**esbuild** 基础插件中介绍过](/depedency/esbuild插件基础介绍.html), 如果不是 **esbuild** 能够识别构建的文件, 可以通过onLoad进行内容和类型转换, 需要分配 `namespace` 的虚拟命我空间, 在 `onLoad` 阶段设置 `namespace` 可以被拦截转换。
 
 
 
 ## onLoad 提取脚本内容, 并将其视为js模块
 
-在转换层将被 `{ filter: htmlTypesRE, namespace: 'html' }`, 过滤条件拦截转换后交给`esbuild`进行继续处理
+```js
+build.onLoad(
+{ filter: htmlTypesRE, namespace: 'html' },
+async ({ path }) => {})
+```
 
-> 获取html文本内容
+`onLoad` 可以对拦截到的文件进行内容和类型的转换成 **esbuild** 合法的构建文件。
+
+### 获取html文本内容
 
 ```js
 let raw = fs.readFileSync(path, 'utf-8')
 ```
 
-`path`则是`onResolve`解析后传入的绝对路径, 直接通过`fs.readFileSync`获取的`html`文本内容
+`path` 则是 `onResolve` 解析后传入的绝对路径, 直接通过 `fs.readFileSync` 获取的 `html` 文本内容。
 
-> 替换注释节点
+### 替换注释节点
+
 ```js
 export const commentRE = /<!--(.|[\r\n])*?-->/
 raw = raw.replace(commentRE, '<!---->')
 ```
-通过`replace`方法把注释部分进行替换
+
+通过 `replace` 方法把注释部分进行替换。注释是不需要进行脚本提取。
 
 
-> 确定匹配方式
+### 确定脚本匹配方式
 
 ```js
 const scriptModuleRE =
@@ -96,18 +103,17 @@ let js = ''
 let loader: Loader = 'js'
 ```
 
-变量 `isHTML` 确定是否是 `.html` 文件结尾, 因为`.vue` `.svelte`后缀路径也会被拦截, 这里先理解`.html`路径的解析
-变量 `regex` 确定匹配的正则条件, 如果是`.html`路径使用`scriptModuleRE`正则
+变量 `isHTML` 确定是否是 `.html` 文件结尾, 因为`.vue`、 `.svelte` 后缀路径也会被拦截, 这里先理解 `.html` 路径的解析。
+变量 `regex` 确定匹配的正则条件, 如果是 `.html` 路径使用 `scriptModuleRE` 正则。
 
-> **regex.lastIndex**理解:
+### `regex.lastIndex` 理解
 
 `RegExpObject` 的 `lastIndex` 属性指定的字符处开始检索字符串 `string`。当 `exec()` 找到了与表达式相匹配的文本时，在匹配后，它将把 `RegExpObject` 的 `lastIndex` 属性设置为匹配文本的最后一个字符的下一个位置。
 
-声明 `js` 变量, 存放提取或者转换的脚本内容
-
+声明 `js` 变量, 储存提取或者转换的脚本内容。
 声明 `loader` 变量, 告诉 `esbuild` 构建时视为什么类型的文件进行构建。
 
-> 通过正则匹配获取脚本内容
+### 通过正则匹配获取脚本内容
 
 ```js
 const srcRE = /\bsrc\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s'">]+))/im
@@ -123,26 +129,30 @@ while ((match = regex.exec(raw))) {
 }
 ```
 
-利用 `while` 循环通过 `exec` 检索字符串中的正则表达式的匹配, 因为在 `html` 中会有好多处 `script` 元素
+利用 `while` 循环通过 `exec` 检索字符串中的正则表达式的匹配, 因为在 `html` 中会有好多处 `script` 标签。
+变量 `openTag` 为正则表达式开标签的匹配结果, 只有 `type` 为 `module` 才会有匹配结果。
 
-
-变量 `openTag` 为正则表达式开标签的匹配结果, 只有 `type` 为 `module` 才会有匹配结果
+### `openTag` 匹配示例
 
 ```js
-<script type="module" src="/src/main.js"></script> => <script type="module" src="/src/main.js">
+<script type="module" src="/src/main.js"></script>  => 匹配结果  <script type="module" src="/src/main.js">
 <script type="module">
-  import dayjs from 'dayjs'     =>    <script type="module">
+  import dayjs from 'dayjs'   => 匹配结果    <script type="module">
   console.log(dayjs)
 </script>     
 ```
 
 变量 `srcMatch` 提取外部脚本 `src` 路径, 如果有 `srcMatch`, 则转换成`import`的引入方式存放在 `js` 变量中
 
+### `srcMatch` 匹配示例
+
 ```js
- <script type="module" src="/src/main.js">  =>  import '/src/main.js'
+ <script type="module" src="/src/main.js">  => 匹配结果  import '/src/main.js'
 ```
 
 变量 `content` 为非外部引入的脚本，同时添加到 `js` 变量中
+
+### `content` 匹配示例
 
 ```js
 <script type="module">
@@ -151,7 +161,7 @@ while ((match = regex.exec(raw))) {
 </script> 
 ```
 
-检测没有 `export default`, 则添加 `export default {}`, 形成一个完整的 `esm` 的模块方式
+检测没有 `export default`, 则添加 `export default {}`, 形成一个完整的 `esm` 的模块。
 
 ```js
 if (!js.includes(`export default`)) {
@@ -159,7 +169,7 @@ if (!js.includes(`export default`)) {
 }
 ```
 
-> 导出转换后的代码
+### 导出转换后的代码
 
 ```js
 return {
@@ -168,12 +178,12 @@ return {
 }
 ```
 
-1. **loader** 告诉 `esbuild` 当作什么类型的文件进行处理
-2. **contents** 告诉 `esbuild` 文件处理的内容代码
+1. `loader` 告诉 **esbuild** 当作什么类型的文件进行处理。
+2. `contents` 告诉 **esbuild** 文件处理的内容代码。
 
-> 转换演示
+### 转换演示
 
-转换前:
+> 转换前:
 
 ```js
 <script type="module" src="/src/main.js"></script>
@@ -183,7 +193,7 @@ return {
 </script>
 ```
 
-转换后:
+> 转换后:
 
 ```js
 import "/src/main.js"
