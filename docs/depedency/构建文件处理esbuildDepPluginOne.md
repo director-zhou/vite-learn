@@ -215,7 +215,7 @@ if (aliased && (entry = resolveEntry(aliased, isEntry, resolveDir))) {
 :::
 
 
-### 并非收集依赖的模块且不需要过滤的模块
+### 非收集依赖的模块且不需要过滤的模块
 
 
 ```js
@@ -234,12 +234,12 @@ if (isExternalUrl(resolved)) {
 }
 ```
 
-如果引入的是外链地址,通过`resolve`插件解析后会原封动返回原地址,符合了`isExternalUrl`的匹配结果。直接进行过滤。
+如果引入的是外链地址,通过 `resolve` 插件解析后会原封动返回原地址,符合了 `isExternalUrl` 的匹配结果。直接进行过滤。
 
 
 ## 无效的node_modules
 
-在预构建扫描的时候如果没有找到对应的`node_modules`包, 则会收集到`missing`中，提示缺少此包, 在预构建其间，如果没有找到此模块，将会在寻找模块路径时返回`__vite-browser-external`前缀,
+在预构建扫描的时候如果没有找到对应的 `node_modules` 包, 则会收集到 `missing` 中，提示缺少此包, 但是在预构期间，如果没有找到此模块，将会在寻找模块路径时返回`__vite-browser-external`。
 
 ```js
 export const browserExternalId = '__vite-browser-external'
@@ -251,9 +251,4 @@ if (resolved.startsWith(browserExternalId)) {
 }
 ```
 
-通过`namespace`分配一个虚拟空间, 转交给`onLoad`进行模块内容处理。
-
-
-## 相对路径
-
-入口文件中的所有的相对路径路径解析全由`esbuild`内部进行自行解析。
+通过 `namespace` 分配一个虚拟空间, 转交给`onLoad`进行模块内容处理。
