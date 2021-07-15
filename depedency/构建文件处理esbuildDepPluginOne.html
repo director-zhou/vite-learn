@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vite 源码学习</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/vite-learn/assets/css/0.styles.13e0bdfe.css" as="style"><link rel="preload" href="/vite-learn/assets/js/app.2c7ee9f3.js" as="script"><link rel="preload" href="/vite-learn/assets/js/2.8f7adacc.js" as="script"><link rel="preload" href="/vite-learn/assets/js/19.31bbcb69.js" as="script"><link rel="prefetch" href="/vite-learn/assets/js/10.92d4399d.js"><link rel="prefetch" href="/vite-learn/assets/js/11.e5276b76.js"><link rel="prefetch" href="/vite-learn/assets/js/12.591f2923.js"><link rel="prefetch" href="/vite-learn/assets/js/13.725b875f.js"><link rel="prefetch" href="/vite-learn/assets/js/14.ad80e4a6.js"><link rel="prefetch" href="/vite-learn/assets/js/15.fee7330a.js"><link rel="prefetch" href="/vite-learn/assets/js/16.5084fc75.js"><link rel="prefetch" href="/vite-learn/assets/js/17.d54d0bf0.js"><link rel="prefetch" href="/vite-learn/assets/js/18.2d29ec62.js"><link rel="prefetch" href="/vite-learn/assets/js/20.857f00c0.js"><link rel="prefetch" href="/vite-learn/assets/js/21.7c05d01d.js"><link rel="prefetch" href="/vite-learn/assets/js/22.bc53c9c5.js"><link rel="prefetch" href="/vite-learn/assets/js/23.11dc65cd.js"><link rel="prefetch" href="/vite-learn/assets/js/24.19f32ccd.js"><link rel="prefetch" href="/vite-learn/assets/js/25.e036f7c2.js"><link rel="prefetch" href="/vite-learn/assets/js/26.4cfa5155.js"><link rel="prefetch" href="/vite-learn/assets/js/3.ff647eb2.js"><link rel="prefetch" href="/vite-learn/assets/js/4.aa1e20fb.js"><link rel="prefetch" href="/vite-learn/assets/js/5.3510c9da.js"><link rel="prefetch" href="/vite-learn/assets/js/6.346ac952.js"><link rel="prefetch" href="/vite-learn/assets/js/7.c087e119.js"><link rel="prefetch" href="/vite-learn/assets/js/8.89123153.js"><link rel="prefetch" href="/vite-learn/assets/js/9.ade172d4.js">
+    <link rel="stylesheet" href="/vite-learn/assets/css/0.styles.13e0bdfe.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vite-learn/" class="home-link router-link-active"><!----> <span class="site-name">Vite 源码学习</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="//github.com/director-zhou/vite-learn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="//github.com/director-zhou/vite-learn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>依赖预构建</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vite-learn/depedency/为什么需要预构建一.html" class="sidebar-link">为什么需要预构建(一)</a></li><li><a href="/vite-learn/depedency/为什么需要预构建二.html" class="sidebar-link">为什么需要预构建(二)</a></li><li><a href="/vite-learn/depedency/预构建触发时机.html" class="sidebar-link">预构建触发时机</a></li><li><a href="/vite-learn/depedency/预构建执行逻辑.html" class="sidebar-link">预构建执行逻辑</a></li><li><a href="/vite-learn/depedency/预构建核心方法optimizeDeps.html" class="sidebar-link">预构建核心方法optimizeDeps</a></li><li><a href="/vite-learn/depedency/构建准备.html" class="sidebar-link">构建准备</a></li><li><a href="/vite-learn/depedency/自动依赖搜寻.html" class="sidebar-link">自动依赖搜寻</a></li><li><a href="/vite-learn/depedency/确定扫描入口文件.html" class="sidebar-link">确定扫描入口文件</a></li><li><a href="/vite-learn/depedency/如何执行扫描.html" class="sidebar-link">如何执行扫描</a></li><li><a href="/vite-learn/depedency/esbuild插件基础介绍.html" class="sidebar-link">esbuild插件基础介绍</a></li><li><a href="/vite-learn/depedency/收集依赖插件esbuildScanPlugin.html" class="sidebar-link">收集依赖插件esbuildScanPlugin</a></li><li><a href="/vite-learn/depedency/HTML入口扫描.html" class="sidebar-link">HTML入口扫描</a></li><li><a href="/vite-learn/depedency/扫描导入链路.html" class="sidebar-link">扫描导入链路</a></li><li><a href="/vite-learn/depedency/收集依赖.html" class="sidebar-link">收集依赖</a></li><li><a href="/vite-learn/depedency/利用并完善依赖.html" class="sidebar-link">利用并完善依赖</a></li><li><a href="/vite-learn/depedency/构建前准备工作.html" class="sidebar-link">构建前准备工作</a></li><li><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginOne.html" class="active sidebar-link">构建文件处理esbuildDepPlugin(一)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginOne.html#非js文件后缀构建方式" class="sidebar-link">非js文件后缀构建方式</a></li><li class="sidebar-sub-header"><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginOne.html#其余模块构建方式" class="sidebar-link">其余模块构建方式</a></li><li class="sidebar-sub-header"><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginOne.html#外链地址" class="sidebar-link">外链地址</a></li><li class="sidebar-sub-header"><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginOne.html#无效的node-modules" class="sidebar-link">无效的node_modules</a></li></ul></li><li><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginTwo.html" class="sidebar-link">构建文件处理esbuildDepPlugin(二)</a></li><li><a href="/vite-learn/depedency/生成依赖元信息完成构建.html" class="sidebar-link">生成依赖元信息完成构建</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>在整个构建过程中, 不是整体交给 <code>esbuild</code> 进行内部规律构建, 在构建 <code>entryPoint</code> 入口传入的是收集依赖的模块名称, 而不是收集依赖的入口文件路径, 可想而知 <strong>Vite</strong> 通过 <code>esbuildDepPlugin</code> 进行了一些自定义的处理, 对于不支持构建和不需要构建的文件进行排除，找不到的入口文件进行提示，让整个构建过程能够顺利进行, 符合 <code>ESM</code> 的最优的加载方案, 本质上就是对所有非 <code>ESM</code> 模块转化成 导入导出形式为 <code>ESM</code> 的语法。</p> <h2 id="非js文件后缀构建方式"><a href="#非js文件后缀构建方式" class="header-anchor">#</a> 非js文件后缀构建方式</h2> <div class="language-js extra-class"><pre class="language-js"><code>build<span class="token punctuation">.</span><span class="token function">onResolve</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    filter<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">\\.(</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span> externalTypes<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">)(\\?.*)?$</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> path<span class="token operator">:</span> id<span class="token punctuation">,</span> importer<span class="token punctuation">,</span> kind <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> resolved <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">resolve</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> importer<span class="token punctuation">,</span> kind<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>resolved<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> resolved<span class="token punctuation">,</span>
+        external<span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+
+
+<span class="token keyword">const</span> externalTypes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">'css'</span><span class="token punctuation">,</span>
+  <span class="token comment">// supported pre-processor types</span>
+  <span class="token string">'less'</span><span class="token punctuation">,</span>
+  <span class="token string">'sass'</span><span class="token punctuation">,</span>
+  <span class="token string">'scss'</span><span class="token punctuation">,</span>
+  <span class="token string">'styl'</span><span class="token punctuation">,</span>
+  <span class="token string">'stylus'</span><span class="token punctuation">,</span>
+  <span class="token string">'pcss'</span><span class="token punctuation">,</span>
+  <span class="token string">'postcss'</span><span class="token punctuation">,</span>
+  <span class="token comment">// known SFC types</span>
+  <span class="token string">'vue'</span><span class="token punctuation">,</span>
+  <span class="token string">'svelte'</span><span class="token punctuation">,</span>
+  <span class="token string">'marko'</span><span class="token punctuation">,</span>
+  <span class="token comment">// JSX/TSX may be configured to be compiled differently from how esbuild</span>
+  <span class="token comment">// handles it by default, so exclude them as well</span>
+  <span class="token string">'jsx'</span><span class="token punctuation">,</span>
+  <span class="token string">'tsx'</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span><span class="token constant">KNOWN_ASSET_TYPES</span>
+<span class="token punctuation">]</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">KNOWN_ASSET_TYPES</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment">// images</span>
+  <span class="token string">'png'</span><span class="token punctuation">,</span>
+  <span class="token string">'jpe?g'</span><span class="token punctuation">,</span>
+  <span class="token string">'gif'</span><span class="token punctuation">,</span>
+  <span class="token string">'svg'</span><span class="token punctuation">,</span>
+  <span class="token string">'ico'</span><span class="token punctuation">,</span>
+  <span class="token string">'webp'</span><span class="token punctuation">,</span>
+  <span class="token string">'avif'</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// media</span>
+  <span class="token string">'mp4'</span><span class="token punctuation">,</span>
+  <span class="token string">'webm'</span><span class="token punctuation">,</span>
+  <span class="token string">'ogg'</span><span class="token punctuation">,</span>
+  <span class="token string">'mp3'</span><span class="token punctuation">,</span>
+  <span class="token string">'wav'</span><span class="token punctuation">,</span>
+  <span class="token string">'flac'</span><span class="token punctuation">,</span>
+  <span class="token string">'aac'</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// fonts</span>
+  <span class="token string">'woff2?'</span><span class="token punctuation">,</span>
+  <span class="token string">'eot'</span><span class="token punctuation">,</span>
+  <span class="token string">'ttf'</span><span class="token punctuation">,</span>
+  <span class="token string">'otf'</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// other</span>
+  <span class="token string">'wasm'</span>
+<span class="token punctuation">]</span>
+
+</code></pre></div><p>以上展示的文件后缀引入都会被进行过滤<code>(图片, 视频, 字体, 样式)</code> 等等不参与构建。
+同时 <code>JSX/TSX</code> 资源也不参与构建, 因为 <code>JSX/TSX</code> 的构建方式可能与esbuild不同, 在 <strong>vite</strong> 加载资源时利用插件自行处理。</p> <h3 id="过滤资源构建示例"><a href="#过滤资源构建示例" class="header-anchor">#</a> 过滤资源构建示例:</h3> <blockquote><p>构建前:</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">(</span><span class="token string">'./hello.scss'</span><span class="token punctuation">)</span>
+<span class="token keyword">import</span> Image <span class="token keyword">from</span> <span class="token string">'./image/hello.jpg'</span>
+<span class="token keyword">import</span> customVue <span class="token keyword">from</span> <span class="token string">'./hello.vue'</span>
+</code></pre></div><blockquote><p>构建后输出：</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Image <span class="token keyword">from</span> <span class="token string">&quot;/Users/admin/zzx/test/src/image/hello.jpg&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> customVue <span class="token keyword">from</span> <span class="token string">&quot;/Users/admin/zzx/test/src/hello.vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">&quot;/Users/admin/zzx/test/src/hello.scss&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="其余模块构建方式"><a href="#其余模块构建方式" class="header-anchor">#</a> 其余模块构建方式</h2> <div class="language-js extra-class"><pre class="language-js"><code> build<span class="token punctuation">.</span><span class="token function">onResolve</span><span class="token punctuation">(</span> <span class="token punctuation">{</span> filter<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\w@][^:]</span><span class="token regex-delimiter">/</span></span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> path<span class="token operator">:</span> id<span class="token punctuation">,</span> importer<span class="token punctuation">,</span> kind<span class="token punctuation">,</span> resolveDir <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><p>其余剩下的所有导入模块,会存被以上拦截，模块类型有以下几种情况:</p> <ol><li>导入 <code>node_module</code> 模块。</li> <li>导入 <code>外链地址</code>。</li> <li>导入路径后缀为 <code>js</code> 的模块。</li> <li>导入以 <code>别名开头</code> 的模块。</li></ol> <h3 id="路径解析方法"><a href="#路径解析方法" class="header-anchor">#</a> 路径解析方法</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// default resolver which prefers ESM</span>
+<span class="token keyword">const</span> _resolve <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">createResolver</span><span class="token punctuation">(</span><span class="token punctuation">{</span> asSrc<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// cjs resolver that prefers Node</span>
+<span class="token keyword">const</span> _resolveRequire <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">createResolver</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  asSrc<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  isRequire<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> resolve <span class="token operator">=</span> <span class="token punctuation">(</span>
+  id<span class="token operator">:</span> string<span class="token punctuation">,</span>
+  importer<span class="token operator">:</span> string<span class="token punctuation">,</span>
+  kind<span class="token operator">:</span> ImportKind<span class="token punctuation">,</span>
+  resolveDir<span class="token operator">?</span><span class="token operator">:</span> string
+<span class="token punctuation">)</span><span class="token operator">:</span> Promise<span class="token operator">&lt;</span>string <span class="token operator">|</span> <span class="token keyword">undefined</span><span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> _importer
+  <span class="token comment">// explicit resolveDir - this is passed only during yarn pnp resolve for</span>
+  <span class="token comment">// entries</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>resolveDir<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    _importer <span class="token operator">=</span> <span class="token function">normalizePath</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>resolveDir<span class="token punctuation">,</span> <span class="token string">'*'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// map importer ids to file paths for correct resolution</span>
+    _importer <span class="token operator">=</span> importer <span class="token keyword">in</span> qualified <span class="token operator">?</span> qualified<span class="token punctuation">[</span>importer<span class="token punctuation">]</span> <span class="token operator">:</span> importer
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> resolver <span class="token operator">=</span> kind<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">'require'</span><span class="token punctuation">)</span> <span class="token operator">?</span> _resolveRequire <span class="token operator">:</span> _resolve
+  <span class="token keyword">return</span> <span class="token function">resolver</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> _importer<span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span> ssr<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> resolved <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">resolve</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> importer<span class="token punctuation">,</span> kind<span class="token punctuation">)</span>
+</code></pre></div><p>在 <code>onResolve</code> 拦截时，会返回一个 <code>kind</code> 参数, 通过 <code>kind</code> 可以明确知道, 此模块的导入方式, 是 <code>esm</code> 的导入方式，还是 <code>cjs</code> 导入方式, 分别生成两个解析器用来解析导入模块的最终返回构建文件的绝对路径。</p> <h3 id="导入模块是-entrypoint-入口模块"><a href="#导入模块是-entrypoint-入口模块" class="header-anchor">#</a> 导入模块是 <code>entryPoint</code> 入口模块</h3> <p>入口模块则是 <strong>esbuild</strong> 构建时传入 <code>entryPoint</code> 模块名称,它需要进行被二次处理,通过设置 <code>namespace</code> 分配虚拟空间名称, 等待 <code>onload</code> 进行自定义处理返回给 <strong>esbuild</strong> 进行构建。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> isEntry <span class="token operator">=</span> <span class="token operator">!</span>importer
+<span class="token comment">// ensure esbuild uses our resolved entries</span>
+<span class="token keyword">let</span> entry
+<span class="token comment">// if this is an entry, return entry namespace resolve result</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>entry <span class="token operator">=</span> <span class="token function">resolveEntry</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> isEntry<span class="token punctuation">,</span> resolveDir<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> entry
+</code></pre></div><blockquote><p>resolveEntry方法</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">resolveEntry</span><span class="token punctuation">(</span><span class="token parameter">id<span class="token operator">:</span> string<span class="token punctuation">,</span> isEntry<span class="token operator">:</span> boolean<span class="token punctuation">,</span> resolveDir<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> flatId <span class="token operator">=</span> <span class="token function">flattenId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>flatId <span class="token keyword">in</span> qualified<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> isEntry
+      <span class="token operator">?</span> <span class="token punctuation">{</span>
+          path<span class="token operator">:</span> flatId<span class="token punctuation">,</span>
+          namespace<span class="token operator">:</span> <span class="token string">'dep'</span>
+        <span class="token punctuation">}</span>
+      <span class="token operator">:</span> <span class="token constant">XXXXXX</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>声明 <code>isEntry</code> 判断是否是入口文件，不存在 <code>importer</code> 则说明是构建的入口文件。</p> <p>声明 <code>entry</code> 通过 <code>resolveEntry</code> 方法从优化展平表映射对象中, 找到通过展平化的 <code>id</code> 进行寻找已经收集到的对应模块入口文件， 如果是入口模块，必然在 <code>qualified</code> 优化展平表映射对象中存在, 同时设置 <code>namespace: dep</code> 交给<code>onload</code> 进行处理。</p> <p>这里设置 <code>path</code> 返回的是展平后的模块<code>id</code>, 并不是返回 <code>qualified</code> 优化展平表映射对象中解析模块的绝对路径，因为保留条目的原始<code>id</code>而不是文件路径，以便<code>esbuild</code>输出所需的输出文件结构, 需要重新导出以分离虚拟代理。</p> <h3 id="导入模块非-entrypoint-入口模块"><a href="#导入模块非-entrypoint-入口模块" class="header-anchor">#</a> 导入模块非 <code>entryPoint</code> 入口模块</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">resolveEntry</span><span class="token punctuation">(</span><span class="token parameter">id<span class="token operator">:</span> string<span class="token punctuation">,</span> isEntry<span class="token operator">:</span> boolean<span class="token punctuation">,</span> resolveDir<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> flatId <span class="token operator">=</span> <span class="token function">flattenId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>flatId <span class="token keyword">in</span> qualified<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> isEntry
+      <span class="token operator">?</span> <span class="token constant">XXXX</span>
+      <span class="token operator">:</span> <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> require<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>qualified<span class="token punctuation">[</span>flatId<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+          paths<span class="token operator">:</span> <span class="token punctuation">[</span>resolveDir<span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>如果不是入口模块, 解析到此模块时发现 <code>qualified</code> 优化展平表映射对象中存在, 则进行优先使用, 直接返回对应的解析后的绝对路径的入口文件路径。</p> <p>如果 <code>qualified</code> 优化展平表映射对象中不存在此模块，则由 <strong>vite</strong> 解析的路径插件继续解析。</p> <h3 id="别名引入"><a href="#别名引入" class="header-anchor">#</a> 别名引入</h3> <p>在深入分析模块引用模块链路时, 会存在别名引入, 对于别名引入而言, 如果是 <code>entryPoint</code> 入口构建文件, 同样也会被<a href="/vite-learn/depedency/构建文件处理esbuildDepPluginOne.html#其余模块构建方式">入口逻辑给拦截</a>。</p> <p>非入口文件的情况下, 如果 <code>qualified</code> 优化展平表映射对象中不存在此模块，则由 <strong>vite</strong> 解析的路径插件继续解析。</p> <div class="custom-block warning"><p class="custom-block-title">提示</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// check if this is aliased to an entry - also return entry namespace</span>
+<span class="token keyword">const</span> aliased <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">_resolve</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>aliased <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>entry <span class="token operator">=</span> <span class="token function">resolveEntry</span><span class="token punctuation">(</span>aliased<span class="token punctuation">,</span> isEntry<span class="token punctuation">,</span> resolveDir<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> entry
+<span class="token punctuation">}</span>
+</code></pre></div><p>如果别名模块是入口模块, 或者已经是被构建依赖收集的模块都会被入口第一个 <code>resolveEntry</code> 方法进行返回, 并不会走到此逻辑内。</p></div> <h3 id="非收集依赖的模块且不需要过滤的模块"><a href="#非收集依赖的模块且不需要过滤的模块" class="header-anchor">#</a> 非收集依赖的模块且不需要过滤的模块</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> resolved <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">resolve</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> importer<span class="token punctuation">,</span> kind<span class="token punctuation">)</span>
+</code></pre></div><p>遇到导入的模块并不是依赖构建中收集的模块，同时也不需要被过行过滤, 此时会通过 <code>resolve</code> 插件进行自行解析出入口文件路径, 最后通过<code>return path</code>控制权交给<code>esbuild</code>继续处理。</p> <h2 id="外链地址"><a href="#外链地址" class="header-anchor">#</a> 外链地址</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isExternalUrl</span><span class="token punctuation">(</span>resolved<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> resolved<span class="token punctuation">,</span>
+    external<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>如果引入的是外链地址,通过 <code>resolve</code> 插件解析后会原封动返回原地址,符合了 <code>isExternalUrl</code> 的匹配结果。直接进行过滤。</p> <h2 id="无效的node-modules"><a href="#无效的node-modules" class="header-anchor">#</a> 无效的node_modules</h2> <p>在预构建扫描的时候如果没有找到对应的 <code>node_modules</code> 包, 则会收集到 <code>missing</code> 中，提示缺少此包, 但是在预构期间，如果没有找到此模块，将会在寻找模块路径时返回<code>__vite-browser-external</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">const</span> browserExternalId <span class="token operator">=</span> <span class="token string">'__vite-browser-external'</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>resolved<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>browserExternalId<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> id<span class="token punctuation">,</span>
+    namespace<span class="token operator">:</span> <span class="token string">'browser-external'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>通过 <code>namespace</code> 分配一个虚拟空间, 转交给<code>onLoad</code>进行模块内容处理。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vite-learn/depedency/构建前准备工作.html" class="prev">
+        构建前准备工作
+      </a></span> <span class="next"><a href="/vite-learn/depedency/构建文件处理esbuildDepPluginTwo.html">
+        构建文件处理esbuildDepPlugin(二)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vite-learn/assets/js/app.2c7ee9f3.js" defer></script><script src="/vite-learn/assets/js/2.8f7adacc.js" defer></script><script src="/vite-learn/assets/js/19.31bbcb69.js" defer></script>
+  </body>
+</html>
